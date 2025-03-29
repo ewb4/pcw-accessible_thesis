@@ -23,12 +23,12 @@ jobs:
         echo "::group::List env vars"
         env | sort
         echo "::endgroup::"
-        echo "::group::Announce SPEC filename"
-        echo "Deploying build ${{ steps.set_step.outputs.spec_file }}"
-        echo "::endgroup::"
         echo "::group::working directory (pwd)"
         pwd
         echo "::endgroup::"
         echo "::group::Recursive list files from working directory"
         ls -lR
+        echo "::endgroup::"
+        echo "::group::Output thesis.log"
+        if [ -e thesis.log ] ; then cat thesis.log ; fi
         echo "::endgroup::"
