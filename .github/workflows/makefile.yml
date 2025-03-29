@@ -13,6 +13,22 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Github Action for LaTeX
+      continue-on-error: true
       uses: xu-cheng/latex-action@3.2.0
       with:
         root_file: thesis.tex
+
+    - name: List
+      run: |
+        echo "::group::List env vars"
+        env | sort
+        echo "::endgroup::"
+        echo "::group::Announce SPEC filename"
+        echo "Deploying build ${{ steps.set_step.outputs.spec_file }}"
+        echo "::endgroup::"
+        echo "::group::working directory (pwd)"
+        pwd
+        echo "::endgroup::"
+        echo "::group::Recursive list files from working directory"
+        ls -lR
+        echo "::endgroup::"
