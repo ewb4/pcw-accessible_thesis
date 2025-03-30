@@ -14,10 +14,10 @@ jobs:
     - name: Github TeXLive Action
       continue-on-error: true
       uses: xu-cheng/texlive-action@v2
-        with:
-          scheme: full
-          run: |
-            make
+      with:
+        scheme: full
+        run: |
+          make
 
     - name: List
       run: |
