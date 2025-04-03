@@ -31,17 +31,32 @@ jobs:
         echo "::group::Set workflownamestring variable"
         printf 'workflownamestring=["%s"]\n' "${GITHUB_WORKFLOW}" | tee -a "$GITHUB_OUTPUT"
         echo "::endgroup::"
+        releasefiles='[""]'
         echo "::group::Set thesis variable"
-        if [ -e thesis.pdf ] ; then
-          echo 'thesis=["thesis.pdf"]' | tee -a "$GITHUB_OUTPUT"
+        f="thesis.pdf"
+        if [ -e ${f} ] ; then
+          printf 'thesis=["%s"]\n' "${f}" | tee -a "$GITHUB_OUTPUT"
+          tmpstr=$(echo ${releasefiles} | sed 's/^[^=]*=//')
+          releasefiles=$(echo "${tmpstr}" | jq -c --arg f "${f}" '. + [$f]' | jq -c 'del(.. | select(. == "" or . == null))')
+        else
+          printf 'thesis=[""]\n' | tee -a "$GITHUB_OUTPUT"
         fi
         echo "::endgroup::"
         echo "::group::Output thesis.log"
-        if [ -e thesis.log ] ; then
-          echo 'logfile=["thesis.log"]' | tee -a "$GITHUB_OUTPUT"
+        f="thesis.log"
+        if [ -e ${f} ] ; then
+          printf 'logfile=["%s"]\n' "${f}" | tee -a "$GITHUB_OUTPUT"
+          tmpstr=$(echo ${releasefiles} | sed 's/^[^=]*=//')
+          releasefiles=$(echo "${tmpstr}" | jq -c --arg f "${f}" '. + [$f]' | jq -c 'del(.. | select(. == "" or . == null))')
           cat thesis.log
+        else
+          printf 'logfile=[""]\n' | tee -a "$GITHUB_OUTPUT"
         fi
         echo "::endgroup::"
+        echo "::group::Output releasefiles array"
+        printf 'releasefiles=%s\n' "${releasefiles}" | tee -a "$GITHUB_OUTPUT"
+        echo "::endgroup::"
+
 
     - name: Release
       if: true
@@ -50,7 +65,5 @@ jobs:
         name: Thesis via ${{ join(fromJSON(steps.list.outputs.workflownamestring), ' ') }}
         draft: true
         files: |-
-            ${{ join(fromJSON(steps.list.outputs.logfile), '
-            ')}}
-            ${{ join(fromJSON(steps.list.outputs.thesis), '
+            ${{ join(fromJSON(steps.list.outputs.releasefiles), '
             ')}}
