@@ -46,9 +46,6 @@ jobs:
           cat thesis.log
         fi
         echo "::endgroup::"
-        echo "::group::Is pandoc installed"
-        type pandoc || true
-        echo "::endgroup::"
 
     - name: Release
       if: true
@@ -57,7 +54,7 @@ jobs:
         name: Thesis via ${{ join(fromJSON(steps.list.outputs.workflownamestring), ' ') }}
         draft: true
         files: |-
-            ${{ join(fromJSON(steps.list.outputs.logfile), '
-            ')}}
-            ${{ join(fromJSON(steps.list.outputs.thesis), '
-            ')}}
+          ${{ join(fromJSON(steps.list.outputs.logfile), '
+          ')}}
+          ${{ join(fromJSON(steps.list.outputs.thesis), '
+          ')}}
