@@ -54,7 +54,7 @@ jobs:
         name: Thesis via ${{ join(fromJSON(steps.list.outputs.workflownamestring), ' ') }}
         draft: true
         files: |-
-          ${{ join(fromJSON(steps.list.outputs.logfile), '
-          ')}}
-          ${{ join(fromJSON(steps.list.outputs.thesis), '
-          ')}}
+            ${{ join(fromJSON(steps.list.outputs.logfile), '
+            ')}}
+            ${{ join(fromJSON(steps.list.outputs.thesis), '
+            ')}}
