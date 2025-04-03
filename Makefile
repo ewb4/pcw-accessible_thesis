@@ -6,8 +6,11 @@ PDF=$(patsubst %.tex,%.pdf,$(wildcard *.tex))
 export TEXMFCNF := "texmf:"
 
 test:
+    @echo "ENV"
+	env | sort
 	@echo "Testing TEXMFCNF list"
-	kpsewhich --all texmf.cnf
+	which kpsewhich || true
+	kpsewhich --all texmf.cnf || true
 
 all: $(PNG) $(PDF) $(DEPS)
 	@echo "BUILDING all DEPS=$(DEPS)"
