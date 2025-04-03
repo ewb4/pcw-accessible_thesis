@@ -3,6 +3,12 @@ BIB=$(wildcard *.bib)
 DEPS=$(patsubst %.tex,%.bbl,$(wildcard *.tex))
 PDF=$(patsubst %.tex,%.pdf,$(wildcard *.tex))
 
+export TEXMFCNF := "texmf:"
+
+test:
+	@echo "Testing TEXMFCNF list"
+	kpsewhich --all texmf.cnf
+
 all: $(PNG) $(PDF) $(DEPS)
 	@echo "BUILDING all DEPS=$(DEPS)"
 
