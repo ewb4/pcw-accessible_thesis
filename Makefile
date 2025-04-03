@@ -6,7 +6,7 @@ PDF=$(patsubst %.tex,%.pdf,$(wildcard *.tex))
 export TEXMFCNF := "texmf:"
 
 test:
-    @echo "ENV"
+	@echo "ENV"
 	env | sort
 	@echo "Testing TEXMFCNF list"
 	which kpsewhich || true
