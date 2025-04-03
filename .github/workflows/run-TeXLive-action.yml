@@ -38,6 +38,8 @@ jobs:
         echo "::group::Set thesis variable"
         if [ -e thesis.pdf ] ; then
           echo 'thesis=["thesis.pdf"]' | tee -a "$GITHUB_OUTPUT"
+        else
+          echo 'thesis=[""]' | tee -a "$GITHUB_OUTPUT"
         fi
         echo "::endgroup::"
         echo "::group::Output thesis.log"
