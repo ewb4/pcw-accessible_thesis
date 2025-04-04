@@ -20,9 +20,9 @@
 %
 % Elements gleaned from TeX forums
 % Avoid linebreaks in LaTeX console / log output (uncomment next three lines to apply)
-%% max_print_line=1000
-%% error_line=254
-%% half_error_line=238
+max_print_line=1000
+error_line=254
+half_error_line=238
 %
 % Adjust/Increase main memory (uncomment only one of the next three lines)
 %% main_memory = 5000000  %% normal default size
