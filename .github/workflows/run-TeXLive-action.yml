@@ -18,7 +18,6 @@ jobs:
       with:
         scheme: full
         run: |
-          make test || true
           make
 
     - name: List
