@@ -3,7 +3,8 @@ BIB=$(wildcard *.bib)
 DEPS=$(patsubst %.tex,%.bbl,$(wildcard *.tex))
 PDF=$(patsubst %.tex,%.pdf,$(wildcard *.tex))
 
-export TEXMFCNF := "texmf:"
+WHEREAMI := $(shell pwd)
+export TEXMFCNF := $(WHEREAMI)/texmf:
 
 test:
 	@echo "ENV"
