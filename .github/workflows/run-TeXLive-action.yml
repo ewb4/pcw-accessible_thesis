@@ -32,7 +32,7 @@ jobs:
         rerun="false"
         if [ -f thesis.log ] ; then
           countstr=$(egrep -c -i '\sRerun to correct this|\sRerun to get citations correct|\sRerun to get cross-references right' thesis.log)
-          if [ "${{ fromJSON(steps.make-run1.outputs.make_exit_code) }}" = "2" ] ; then
+          if [ ${countstr} -gt 0 ] ; then
             mv -v thesis.log run1-thesis.log
             rerun="true"
           fi
