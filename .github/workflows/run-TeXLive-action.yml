@@ -24,6 +24,7 @@ jobs:
           # trap/capture exit codes
           # https://github.com/orgs/community/discussions/46992#discussioncomment-9395504
           trap 'make_exit_code="$?"; echo "make_exit_code=${make_exit_code}" | tee -a "$GITHUB_OUTPUT"; if [[ "${make_exit_code}" == "2" ]]; then exit 0; fi' EXIT
+          make test
           make
 
     - name: Glue Logic testing for rerun of make/LaTeX
