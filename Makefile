@@ -33,3 +33,5 @@ test:
 	@echo "Testing TEXMFCNF list"
 	which kpsewhich || true
 	kpsewhich --all texmf.cnf || true
+	@echo "fmtutil-user to rebuild"
+	fmtutil-user --all
