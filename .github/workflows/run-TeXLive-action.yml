@@ -30,8 +30,9 @@ jobs:
     - name: Glue Logic testing for rerun of make/LaTeX
       id: glue
       run: |
+        echo "::group::Determing if another run of make/LaTeX is needed"
         rerun="false"
-        if [ -f thesis.log ] ; then
+        if [ -f thesis.log ] && [ ! -f thesis.pdf ] ; then
           countstr=$(egrep -c -i '\sRerun to correct this|\sRerun to get citations correct|\sRerun to get cross-references right' thesis.log)
           if [ ${countstr} -gt 0 ] ; then
             mv -v thesis.log run1-thesis.log
@@ -39,6 +40,7 @@ jobs:
           fi
         fi
         echo "rerun=${rerun}" | tee -a $GITHUB_OUTPUT
+        echo "::endgroup::"
 
     - name: Run TeXLive-Action make again
       if: "${{ steps.glue.outputs.rerun == 'true' }}"
