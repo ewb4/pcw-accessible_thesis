@@ -65,7 +65,7 @@ jobs:
         pwd
         echo "::endgroup::"
         echo "::group::Recursive list files from working directory"
-        ls -lR
+        ls -lRa
         echo "::endgroup::"
         echo "::group::Set workflownamestring variable"
         printf 'workflownamestring=["%s"]\n' "${GITHUB_WORKFLOW}" | tee -a "$GITHUB_OUTPUT"
