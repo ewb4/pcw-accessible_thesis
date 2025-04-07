@@ -28,10 +28,10 @@ clean:
 	rm *.pdf *.log *.aux *.dvi *.bbl *.fls *.blg *.fdb_latexmk *.spl *.gz *.lof *.lot *.out contents/*.pdf contents/*.aux contents/*.fls contents/*.log contents/*.fdb_latexmk
 
 test:
-	@echo "ENV"
-	env | sort
-	@echo "Testing TEXMFCNF list"
-	which kpsewhich || true
-	kpsewhich --all texmf.cnf || true
+	#@echo "ENV"
+	#env | sort
+	#@echo "Testing TEXMFCNF list"
+	#which kpsewhich || true
+	#kpsewhich --all texmf.cnf || true
 	@echo "fmtutil-user to rebuild"
 	fmtutil-user --all
