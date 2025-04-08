@@ -24,7 +24,7 @@ jobs:
           # trap/capture exit codes
           # https://github.com/orgs/community/discussions/46992#discussioncomment-9395504
           trap 'make_exit_code="$?"; echo "make_exit_code=${make_exit_code}" | tee -a "$GITHUB_OUTPUT"; if [[ "${make_exit_code}" == "2" ]]; then exit 0; fi' EXIT
-          make test
+          make setmem
           make
 
     - name: Glue Logic testing for rerun of make/LaTeX
@@ -45,7 +45,6 @@ jobs:
     - name: Run TeXLive-Action make again
       if: "${{ steps.glue.outputs.rerun == 'true' }}"
       id: make-run2
-      continue-on-error: true
       uses: xu-cheng/texlive-action@3586544d56723b23ab69aec1e9d73e7220d9c313     # v2
       with:
         scheme: full

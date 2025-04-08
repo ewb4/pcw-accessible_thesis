@@ -27,7 +27,7 @@ all: $(PNG) $(PDF) $(DEPS)
 clean:
 	rm *.pdf *.log *.aux *.dvi *.bbl *.fls *.blg *.fdb_latexmk *.spl *.gz *.lof *.lot *.out contents/*.pdf contents/*.aux contents/*.fls contents/*.log contents/*.fdb_latexmk
 
-test:
+setmem:
 	#@echo "ENV"
 	#env | sort
 	#@echo "Testing TEXMFCNF list"
